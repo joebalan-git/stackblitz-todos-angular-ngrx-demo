@@ -24,6 +24,6 @@ export class TaskFormComponent {
 
   saveTask() {
     this.store.dispatch(new AddTaskAction(this.formGroup.value));
-    // this.formGroup.reset();
+    this.formGroup.reset();
   }
 }

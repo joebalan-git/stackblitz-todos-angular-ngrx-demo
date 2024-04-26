@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { GetTasksAction, TaskActionType } from 'src/app/store/actions/task.action';
+import { DeleteTaskAction, EditTaskAction, GetTasksAction, TaskActionType } from 'src/app/store/actions/task.action';
 import { State } from 'src/app/store/models/state.model';
 import { Task } from 'src/app/store/models/task.model';
 
@@ -17,5 +17,13 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit(){
     this.tasks$ = this.store.select((store) => store.tasks);
+  }
+
+  editTask(task: Task){
+    this.store.dispatch(new EditTaskAction(task));
+  }
+
+  deleteTask(task: Task){
+    this.store.dispatch(new DeleteTaskAction(task));
   }
 }
