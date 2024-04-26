@@ -14,7 +14,11 @@ export function taskReducer(
   action: TaskAction
 ) {
   switch (action.type) {
-    case TaskActionType.ADD_ITEM:
+    case TaskActionType.GET_TASKS:
+      return {
+        ...state
+      }
+    case TaskActionType.ADD_TASK:
       return [...state, action.payload];
     default:
       return state;
