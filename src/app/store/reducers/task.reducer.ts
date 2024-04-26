@@ -1,7 +1,6 @@
 import { TaskAction, TaskActionType } from '../actions/task.action';
 import { Task } from '../models/task.model';
 
-// create a dummy initial state
 const initialState: Array<Task> = [];
 
 export function taskReducer(
