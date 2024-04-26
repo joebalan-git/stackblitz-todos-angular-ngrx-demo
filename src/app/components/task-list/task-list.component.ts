@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { DeleteTaskAction, EditTaskAction, GetTasksAction, TaskActionType } from 'src/app/store/actions/task.action';
-import { State } from 'src/app/store/models/state.model';
-import { Task } from 'src/app/store/models/task.model';
+
+import { Task, AppState } from 'src/app/store/models';
+import { selectTasks } from 'src/app/store/selectors';
+import { LOAD_TASKS } from 'src/app/store/actions';
 
 @Component({
   selector: 'app-task-list',
@@ -11,19 +12,19 @@ import { Task } from 'src/app/store/models/task.model';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  tasks$: Observable<Array<Task>>;
+  tasks$ = this.store.pipe(select(selectTasks));
 
-  constructor(private store: Store<State>){}
+  constructor(private store: Store<AppState>){}
 
   ngOnInit(){
-    this.tasks$ = this.store.select((store) => store.tasks);
+    this.store.dispatch(LOAD_TASKS());
   }
 
   editTask(task: Task){
-    this.store.dispatch(new EditTaskAction(task));
+    // this.store.dispatch(new EditTaskAction(task));
   }
 
   deleteTask(task: Task){
-    this.store.dispatch(new DeleteTaskAction(task));
+    // this.store.dispatch(new DeleteTaskAction(task));
   }
 }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AddTaskAction } from 'src/app/store/actions/task.action';
-import { State } from 'src/app/store/models/state.model';
+import { AppState } from 'src/app/store/models';
+import { ADD_TASK } from 'src/app/store/actions';
 
 @Component({
   selector: 'app-task-form',
@@ -13,7 +13,7 @@ export class TaskFormComponent {
 
   formGroup: FormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store<State>) {
+  constructor(private fb: FormBuilder, private store: Store<AppState>) {
     this.formGroup = this.fb.group({
       title: ['', Validators.required],
       id: 0,
@@ -23,7 +23,7 @@ export class TaskFormComponent {
   }
 
   saveTask() {
-    this.store.dispatch(new AddTaskAction(this.formGroup.value));
+    this.store.dispatch(ADD_TASK(this.formGroup.value));
     this.formGroup.reset();
   }
 }
