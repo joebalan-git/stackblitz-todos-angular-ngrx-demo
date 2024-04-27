@@ -25,8 +25,9 @@ export class TaskEffects {
   addTask$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ADD_TASK),
-      switchMap(({task}) =>
-        this.taskService.addTask(task).pipe(map((task: Task) => ADD_TASK_SUCCESS({ task })), catchError(() => [ADD_TASK_ERROR()]))
+      switchMap((action) => {
+        return this.taskService.addTask(action.task).pipe(map((task: Task) => ADD_TASK_SUCCESS({ task })), catchError(() => [ADD_TASK_ERROR()]))
+        }
       )
     )
   );

@@ -23,7 +23,7 @@ export class TaskFormComponent {
   }
 
   saveTask() {
-    this.store.dispatch(ADD_TASK(this.formGroup.value));
+    this.store.dispatch(ADD_TASK({ task: this.formGroup.value }));
     this.formGroup.reset();
-  }
+  } 
 }

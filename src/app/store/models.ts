@@ -4,14 +4,10 @@ export interface Task {
   completed: boolean;
 }
 
-export interface TaskState {
-  [id: string]: Task;
-}
-
 export interface TaskRootState {
-  ['task']: TaskState;
+  ['task']: Task[];
 }
 
 export interface AppState {
-  task: TaskState;
+  task: Task[];
 }

@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -29,6 +30,7 @@ import { taskReducer } from './store/reducers';
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatGridListModule,
   ],
   declarations: [AppComponent, TaskFormComponent, TaskListComponent],
   bootstrap: [AppComponent],

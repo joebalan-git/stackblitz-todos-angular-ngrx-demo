@@ -14,3 +14,9 @@ body {
 .title {
   text-align: center;
 }
+
+.mat-mdc-card {
+  width: 100%;
+  margin: 20px;
+  border: 1px solid #000;
+}
