@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { map } from 'rxjs';
 import { Task } from "src/app/store/models";
 
 @Injectable({
@@ -20,11 +21,15 @@ export class TaskService{
         return this.http.post(`${this.apiUrl}/todos`, task);
     }
 
-    updateTask(task: Task){
+    editTask(task: Task){
         return this.http.put(`${this.apiUrl}/todos/${task.id}`, task);
     }
 
     deleteTask(task: Task){
-        return this.http.delete(`${this.apiUrl}/todos/${task.id}`);
+        return this.http.delete(`${this.apiUrl}/todos/${task.id}`).pipe(
+            map((res) => {
+                return task;
+            })
+        );
     }
 }

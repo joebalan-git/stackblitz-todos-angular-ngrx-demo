@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Task, AppState } from 'src/app/store/models';
 import { selectTasks } from 'src/app/store/selectors';
-import { LOAD_TASKS } from 'src/app/store/actions';
+import { LOAD_TASKS, EDIT_TASK, DELETE_TASK } from 'src/app/store/actions';
 
 @Component({
   selector: 'app-task-list',
@@ -21,10 +21,10 @@ export class TaskListComponent implements OnInit {
   }
 
   editTask(task: Task){
-    // this.store.dispatch(new EditTaskAction(task));
+    this.store.dispatch(EDIT_TASK({task: { ...task, completed: true }}));
   }
 
   deleteTask(task: Task){
-    // this.store.dispatch(new DeleteTaskAction(task));
+    this.store.dispatch(DELETE_TASK({task}));
   }
 }
